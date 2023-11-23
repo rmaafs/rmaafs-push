@@ -1,7 +1,17 @@
 importScripts("https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js");
 importScripts("https://www.gstatic.com/firebasejs/8.6.2/firebase-messaging.js");
 // For an optimal experience using Cloud Messaging, also add the Firebase SDK for Analytics.
-importScripts("https://www.gstatic.com/firebasejs/8.6.2/firebase-messaging.js");
+importScripts("https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js");
+
+firebase.initializeApp({
+  apiKey: "XXX",
+  authDomain: "XXX",
+  databaseURL: "XXX",
+  projectId: "XXX",
+  storageBucket: "XXX",
+  messagingSenderId: "XXX",
+  appId: "XXX",
+});
 
 // Retrieve an instance of Firebase Messaging so that it can handle background
 // messages.
