@@ -4,13 +4,13 @@ importScripts("https://www.gstatic.com/firebasejs/8.6.2/firebase-messaging.js");
 importScripts("https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js");
 
 firebase.initializeApp({
-  apiKey: "XXX",
-  authDomain: "XXX",
-  databaseURL: "XXX",
-  projectId: "XXX",
-  storageBucket: "XXX",
-  messagingSenderId: "XXX",
-  appId: "XXX",
+  apiKey: "AIzaSyCTJ-g_pVOPW1ZOyOYzs2X2s520KounYAg",
+  authDomain: "maps-notif.firebaseapp.com",
+  databaseURL: "https://maps-notif.firebaseio.com",
+  projectId: "maps-notif",
+  storageBucket: "maps-notif.appspot.com",
+  messagingSenderId: "734068836291",
+  appId: "1:734068836291:web:ed25910189b1e16368df76",
 });
 
 // Retrieve an instance of Firebase Messaging so that it can handle background
@@ -25,12 +25,6 @@ messaging.setBackgroundMessageHandler((payload) => {
   // Customize notification here
   const notification = JSON.parse(payload.data.notification);
   const notificationTitle = notification.title;
-  const notificationOptions = {
-    body: notification.body,
-  };
 
-  return self.registration.showNotification(
-    notificationTitle,
-    notificationOptions
-  );
+  return self.registration.showNotification(notificationTitle, notification);
 });

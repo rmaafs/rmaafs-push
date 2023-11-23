@@ -1,7 +1,19 @@
 <html>
 
 <head>
-  <title>PWA with FCM</title>
+  <meta charset="utf-8" />
+  <link rel="icon" href="favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a192f" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description"
+    content="Hola, soy Rodrigo Maafs Atilano. Estudiante de Ingeniería en Sistemas Computacionales" />
+  <meta content="https://avatars.githubusercontent.com/u/47652130?s=300&u=e14efd0723cc525183525917bb108188e2cc1bde&v=4"
+    property="og:image" />
+  <link rel="apple-touch-icon"
+    href="https://avatars.githubusercontent.com/u/47652130?s=300&u=e14efd0723cc525183525917bb108188e2cc1bde&v=4" />
+  <link rel="manifest" href="manifest.json" />
+  <title>rmaafs</title>
 
   <!-- Include Firebase scripts -->
   <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
@@ -39,7 +51,7 @@
     <br />
     <!-- Display token and error messages -->
     <div>
-      Token: <b id="token">N/A</b>
+      Token: <textarea id="token">N/A</textarea>
       <div id="error"></div>
     </div>
   </div>
@@ -48,13 +60,13 @@
   <script>
     // Firebase configuration
     const firebaseConfig = {
-      apiKey: "XXX",
-      authDomain: "XXX",
-      databaseURL: "XXX",
-      projectId: "XXX",
-      storageBucket: "XXX",
-      messagingSenderId: "XXX",
-      appId: "XXX"
+      apiKey: "AIzaSyCTJ-g_pVOPW1ZOyOYzs2X2s520KounYAg",
+      authDomain: "maps-notif.firebaseapp.com",
+      databaseURL: "https://maps-notif.firebaseio.com",
+      projectId: "maps-notif",
+      storageBucket: "maps-notif.appspot.com",
+      messagingSenderId: "734068836291",
+      appId: "1:734068836291:web:ed25910189b1e16368df76"
     };
 
     // Initialize Firebase
