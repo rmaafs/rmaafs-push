@@ -2,8 +2,7 @@
 FROM nginx:alpine
 
 # Copy your HTML file and any other necessary static resources
-COPY index.html /usr/share/nginx/html/
-COPY firebase-messaging-sw.js /usr/share/nginx/html/
+COPY . /usr/share/nginx/html/
 # If you have other files (images, styles, scripts, etc.), copy them as well:
 # COPY static /usr/share/nginx/html/static
 
