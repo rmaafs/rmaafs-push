@@ -1,0 +1,17 @@
+version: "3"
+services:
+  app:
+    #image: rmaafs/rmaafs-push:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8824:80"
+    environment:
+      VIRTUAL_HOST: push.rmaafs.com
+    restart: always
+
+networks:
+  default:
+    name: nginx-proxy
+    external: true

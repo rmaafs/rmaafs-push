@@ -1,0 +1,106 @@
+<html>
+
+<head>
+  <title>PWA with FCM</title>
+
+  <!-- Include Firebase scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-messaging.js"></script>
+
+  <!-- Styles for the page -->
+  <style>
+    .container {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #enableNotifications {
+      height: 80px;
+      width: 350px;
+      background-color: black;
+      color: white;
+      border: 1px;
+      border-radius: 500px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Page container -->
+  <div class="container">
+    <!-- Button to enable notifications -->
+    <button id="enableNotifications" onclick="askForPermission()">Enable Notification</button>
+    <br />
+    <br />
+    <!-- Display token and error messages -->
+    <div>
+      Token: <b id="token">N/A</b>
+      <div id="error"></div>
+    </div>
+  </div>
+
+  <!-- JavaScript code -->
+  <script>
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "XXX",
+      authDomain: "XXX",
+      databaseURL: "XXX",
+      projectId: "XXX",
+      storageBucket: "XXX",
+      messagingSenderId: "XXX",
+      appId: "XXX"
+    };
+
+    // Initialize Firebase
+    const firebaseApp = firebase.initializeApp(firebaseConfig);
+    const messaging = firebase.messaging();
+
+    // Ask the user for permission to receive notifications
+    function askForPermission() {
+      if ('Notification' in window) {
+        Notification.requestPermission().then(function (permission) {
+          if (permission === 'granted') {
+            // If the user grants permission, obtain the token
+            getToken();
+          } else {
+            console.log('Permission denied for notifications.');
+            // Update UI with an error message
+            document.getElementById("error").innerHTML = "Permission denied for notifications by the user.";
+          }
+        });
+      }
+    }
+
+    // Obtain the FCM token
+    function getToken() {
+      navigator.serviceWorker.register("./firebase-messaging-sw.js")
+        .then((registration) => {
+          return messaging.getToken({ serviceWorkerRegistration: registration });
+        })
+        .then((currentToken) => {
+          if (currentToken) {
+            console.log("Firebase Token", currentToken);
+            // Update UI with the obtained token
+            document.getElementById("token").innerHTML = currentToken;
+          } else {
+            // Update UI with an error message
+            document.getElementById("error").innerHTML = "No registration token available. Request permission to generate one.";
+          }
+        })
+        .catch((err) => {
+          console.log("An error occurred while retrieving token. ", err);
+          // Update UI with an error message
+          document.getElementById("error").innerHTML = "An error occurred while retrieving token. " + err;
+        });
+    }
+
+  </script>
+</body>
+
+</html>
